@@ -8,12 +8,10 @@ import IconButton from '../template/iconButton'
 import { changeDescription, search } from './todoActions'
 
 class TodoForm extends React.Component {
+
   constructor(props) {
     super(props)
     this.keyHandler = this.keyHandler.bind(this)
-    this.handleSearch = this.handleSearch.bind(this)
-    this.handleAdd = this.handleAdd.bind(this)
-    this.handleClear = this.handleClear.bind(this)
   }
 
   componentWillMount() {
@@ -57,4 +55,4 @@ const mapDispatchToProps = dispacth => bindActionCreators({ changeDescription, s
 // const mapDispatchToProps = function (dispacth) {
 //   bindActionCreator({ changeDescription }, dispacth)
 // }
-export default connect(mapStateToProps, mapDispatchToProps)(todoForm)
+export default connect(mapStateToProps, mapDispatchToProps)(TodoForm)
