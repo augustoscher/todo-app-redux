@@ -16,3 +16,12 @@ export const search = () => {
         payload: request //middleware
     }
 }
+
+export const add = (description) => {
+    //simplificação criada no ecmascript 2015. Não precisa ser { description: description }
+    const request = axios.post(URL, {description })
+    return {
+        type: 'TODO_ADDED',
+        payload: request
+    }
+}
