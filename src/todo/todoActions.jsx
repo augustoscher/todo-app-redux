@@ -17,15 +17,6 @@ export const search = () => {
     }
 }
 
-// export const add = (description) => {
-//     //simplificação criada no ecmascript 2015. Não precisa ser { description: description }
-//     const request = axios.post(URL, {description })
-//     return [
-//         { type: 'TODO_ADDED', payload: request },
-//         search()
-//     ]
-// }
-
 export const add = (description) => {
     //retorna um método que recebe dispatch como parametro. 
     //primeiro faz o post; 
@@ -42,3 +33,12 @@ export const add = (description) => {
             })
     }
 }
+
+// export const add = (description) => {
+//     //simplificação criada no ecmascript 2015. Não precisa ser { description: description }
+//     const request = axios.post(URL, {description })
+//     return [
+//         { type: 'TODO_ADDED', payload: request },
+//         search()
+//     ]
+// }
