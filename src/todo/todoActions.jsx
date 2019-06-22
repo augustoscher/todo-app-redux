@@ -17,11 +17,28 @@ export const search = () => {
     }
 }
 
+// export const add = (description) => {
+//     //simplificação criada no ecmascript 2015. Não precisa ser { description: description }
+//     const request = axios.post(URL, {description })
+//     return [
+//         { type: 'TODO_ADDED', payload: request },
+//         search()
+//     ]
+// }
+
 export const add = (description) => {
-    //simplificação criada no ecmascript 2015. Não precisa ser { description: description }
-    const request = axios.post(URL, {description })
-    return [
-        { type: 'TODO_ADDED', payload: request },
-        search()
-    ]
+    //retorna um método que recebe dispatch como parametro. 
+    //primeiro faz o post; 
+    //depois chama o dispatch e retorna a action 'TODO_ADDED'
+    //depois chama o dispatch chamando o metodo search, que faz um get no backend e retorna um action 'TODO_SEARCHED'
+    return dispatch => {
+         axios.post(URL, {description })
+            //é possível encadear açoes
+            .then(resp => {
+                dispatch({ type: 'TODO_ADDED', payload: resp.data })
+            })
+            .then(resp => {
+                dispatch(search())
+            })
+    }
 }
