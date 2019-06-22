@@ -20,8 +20,8 @@ export const search = () => {
 export const add = (description) => {
     //simplificação criada no ecmascript 2015. Não precisa ser { description: description }
     const request = axios.post(URL, {description })
-    return {
-        type: 'TODO_ADDED',
-        payload: request
-    }
+    return [
+        { type: 'TODO_ADDED', payload: request },
+        search()
+    ]
 }
