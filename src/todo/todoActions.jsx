@@ -26,7 +26,7 @@ export const add = (description) => {
          axios.post(URL, {description })
             //é possível encadear açoes
             .then(resp => {
-                dispatch({ type: 'TODO_ADDED', payload: resp.data })
+                dispatch(clear())
             })
             .then(resp => {
                 dispatch(search())
@@ -58,6 +58,12 @@ export const remove = (todo) => {
             .then(resp => {
                 dispatch(search())
             })
+    }
+}
+
+export const clear = () => {
+    return {
+        type: 'TODO_CLEAR'
     }
 }
 
