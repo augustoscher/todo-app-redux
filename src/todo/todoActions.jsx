@@ -8,12 +8,16 @@ export const changeDescription = event => ({
 })
 
 export const search = () => {
-    // const search = description ? `&description__regex=/${description}/` : ''
-
-    const request = axios.get(`${URL}?sort=-createdAt`)
-    return {
-        type: 'TODO_SEARCHED',
-        payload: request //middleware
+    //não fazer sempre. arrow function que recebe um dispatch e getState
+    return (dispatch, getState) => {
+        //search vai até a store, pega o valor de description e decide se coloca ou não na requisição.
+        //evita que tenha que passar a description pra todos os metodos que chamam search()
+        const description = getState().todo.description 
+        const search = description ? `&description__regex=/${description}/` : ''
+        axios.get(`${URL}?sort=-createdAt${search}`)
+            .then(resp => {
+                dispatch({type: 'TODO_SEARCHED', payload: resp.data })
+            })
     }
 }
 
@@ -62,9 +66,7 @@ export const remove = (todo) => {
 }
 
 export const clear = () => {
-    return {
-        type: 'TODO_CLEAR'
-    }
+    return [{type: 'TODO_CLEAR'}, search()]
 }
 
 
